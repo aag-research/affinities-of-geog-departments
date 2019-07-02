@@ -12,40 +12,6 @@ import os
 folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
-<<<<<<< HEAD
-p_speciality = {}
-
-#Openning AAG csv that contains all of the program specialities
-program_specialities_csv_name = r'program_specialities.csv'
-program_specialities_csv = open(program_specialities_csv_name).readlines()
-
-headers = program_specialities_csv[0].split('\t')
-program_specialities1 = program_specialities_csv[1].split(',')
-program_specialities2 = program_specialities_csv[2].split(',')
-del program_specialities2[18]
-subject_specialities = program_specialities1[1:15] + program_specialities2[0:]
-#stopped here have a list of my specialities now
-university_specialties= []
-u_s=[]
-#k = program_specialities_csv[5:].split(',')
-
-for uni in program_specialities_csv[5:]:
-    university_info = uni.split(',')
-    #print(uni)
-    university_name = university_info[0]
-    university = uni.split(',')
-    #print(university)
-    if university not in university_specialties:
-        university_specialties.append(university)
-
-for university_details in university_specialties:
-    p_speciality[university_details[0]]= {}
-    for speciality in subject_specialities:
-        for val in university_details:
-            if val not in p_speciality:
-                try: p_speciality[university_details[0]][speciality]= {val}
-                except: 'no value'
-=======
 # Read input data
 input_filename = r'program_specialities.txt'
 input_as_text = open(input_filename).readlines()
@@ -73,4 +39,3 @@ for university, program_data in geog_programs_data_db.items():
 
 # Show the formatted data on the screen
 print(data_for_radar_chart[0:8])
->>>>>>> 8298ba66b0bb3fdd053107ab1724d40e31205318
