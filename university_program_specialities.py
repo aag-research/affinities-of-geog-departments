@@ -9,11 +9,8 @@
 
 # Set up environment
 import os
-from collections import Counter
-import math
-cnt = Counter()
-folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 # Read input data
@@ -39,26 +36,13 @@ for line_as_text in input_as_text[3:]:
 specialties = headers[9:-12]
 data_for_radar_chart = [specialties]
 specialties_count = [0]*len(specialties)
-university_list=[]
 for university, program_data in geog_programs_data_db.items():
-       university_list.append(university)
        program_specialties = [1 if program_data[specialty] == 'X' else 0 for specialty in specialties]
        #print(program_specialties)
        data_for_radar_chart += [(university, program_specialties)]
        specialties_count = [sum(values) for values in zip(specialties_count, program_specialties)]
 
 specialties_count_db = dict(zip(specialties, specialties_count))
-#just for printing
-# for specialty, count in specialties_count_db.items():
-#        print(specialty, count)
-amount_specialities = len(university_list)
-
-average_speciality_count = []
-
-for value in specialties_count:
-       avg_specialty_percent = (value/amount_specialities)*100
-       average_speciality_count.append(avg_specialty_percent)
-
-
-
-
+number_of_universities = len(geog_programs_data_db.keys())
+for specialty, count in specialties_count_db.items():
+       print(specialty, "%.0f%%" % (count/number_of_universities*100))
