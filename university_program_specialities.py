@@ -74,3 +74,4 @@ for key, value in geog_programs_data_db.items():
 
 # Show the formatted data on the screen
 #print(data_for_radar_chart[0:8])
+print(data_for_radar_chart[0:8])
