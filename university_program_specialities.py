@@ -9,6 +9,8 @@
 
 # Set up environment
 import os
+from collections import Counter
+cnt = Counter()
 folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
@@ -40,24 +42,51 @@ for university, program_data in geog_programs_data_db.items():
        data_for_radar_chart += [(university, program_specialties)]
 
 program_data_values={}
-program_values=[]
-for specialty in specialties:
-       program_data_values[specialty]={}
-       for value in program_specialties:
-              #print(program_specialties[34])
-              program_values.append(value)
+# program_values=[]
+# for specialty in specialties:
+#        program_data_values[specialty]={}
+#        for value in program_specialties:
+#               #print(program_specialties[34])
+#               program_values.append(value)
 count = 0
+program_data_values  = {}
+
+university_lists=[]
 for key, value in geog_programs_data_db.items():
-       #print(key)
-       for content in value.values():
-              #print(content)
-              if content == 'X':
-                     count=count+1
-                     program_data_v = dict(specialties)
+       university_lists.append(key)
+       for spec in specialties:
+              #print(spec)
+              program_data_values[spec] = {}
+              if 'X' == value[spec]:
+                     count = count+1
+                     try:program_data_values[spec] = {count}
+                     except:program_data_values[spec] = {'no value'}
+
+
+
+
+
+
+
+
+
+
+
+
+
+              # for content in value.values():
+              # #print(value.get('University name'))
+              # #print(content)
+              #        if content == 'X':
+              #               count=count+1
+              #               program_data_v[value.get(spec)]={count}
+              #        else:
+              #               program_data_v[value.get(spec)]={'no value'}
+
 
 # for key, value in geog_programs_data_db.items():
-#        #print(value['Agricultural Geography'])
-#        if value['Agricultural Geography'] == 'X':
+#        print(value.items())
+#        if value.values() == 'X':
 #               count=count+1
 #               program_data_values['Agricultural Geography'] = {count}
 
@@ -74,4 +103,4 @@ for key, value in geog_programs_data_db.items():
 
 # Show the formatted data on the screen
 #print(data_for_radar_chart[0:8])
-print(data_for_radar_chart[0:8])
+#print(data_for_radar_chart[0:8])
