@@ -38,7 +38,17 @@ for line_as_text in input_as_text[3:]:
 # that would work for radar charts (in matplotlib)
 specialties = headers[9:-12]
 data_for_radar_chart = [specialties]
+
+    #data_for_radar_chart_str = str(lists)
+
+data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
+#data_for_radar_chart_textfile.write(data_for_radar_chart_str)
+data_for_radar_chart_textfile.close()
+
 specialties_count = [0]*len(specialties)
+
+
+
 university_list=[]
 for university, program_data in geog_programs_data_db.items():
        university_list.append(university)
