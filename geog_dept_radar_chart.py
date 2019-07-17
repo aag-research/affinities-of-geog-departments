@@ -112,7 +112,7 @@ def radar_factory(num_vars, frame='circle'):
 
 
 def example_data():
-
+    #geog_affinities_data = open('affinity_data.txt').readlines()
     data = [
         #below are the program specialities
         ['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
@@ -151,7 +151,7 @@ def example_data():
 
     ]
     return data
-
+    #geog_affinities_data.close()
 
 if __name__ == '__main__':
     N = 6
@@ -160,7 +160,7 @@ if __name__ == '__main__':
     data = example_data()
     spoke_labels = data.pop(0)
 
-    fig, axes = plt.subplots(figsize=(6, 6), nrows=3, ncols=3,
+    fig, axes = plt.subplots(figsize=(6, 6), nrows=2, ncols=3,
                              subplot_kw=dict(projection='radar'))
     fig.subplots_adjust(wspace=0.25, hspace=0.40, top=0.85, bottom=0.05)
 
