@@ -117,32 +117,32 @@ def example_data():
         #below are the program specialities
         ['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
          'Urban and Economic Geography', 'Methods',],
-        ('University of Maryland Geography Specialization', [
-            [1.0, 1, 1.0, 0, 1.00, 1.0,], #this would be specializations for each year
+        ('University of Maryland, College Park', [
+            [.375, .6666666666666666, 1.0, 1.0,0.14285714285714285,0.42857142857142855,], #this would be specializations for each year
             [0.07, 0.95, 0.04, 0.05, 0.00, 0.97], #year 2
             [0.01, 0.02, 0.85, 0.19, 0.05, 0.10],
             [0.02, 0.01, 0.07, 0.01, 1, 0.12],
             [0.01, 0.01, 0.02, 0.71, 0.74, 0.70]]),
         ('University of Colorado Boulder', [
-            [0.88, 0.02, 0.02, 0.02, 0.00, 0.05],
+            [0.625, 0.8333333333333334, 1.0, 1.0, 0.7142857142857143,0.7142857142857143],
             [0.08, 0.94, 0.04, 0.02, 0.00, 0.01],
             [0.01, 0.01, 0.79, 0.10, 0.00, 0.05],
             [0.00, 0.02, 0.03, 0.38, 0.31, 0.31],
             [0.02, 0.02, 0.11, 0.47, 0.69, 0.58]]),
-        ('UMD', [
-            [0.88, 0.02, 0.02, 0.02, 0.00, 0.05],
+        ('Auburn University', [
+            [0.375, 0.3333333333333333, 0.5, 0.6666666666666666, 0.2857142857142857, 0.42857142857142855],
             [0.08, 0.94, 0.04, 0.02, 0.00, 0.01],
             [0.01, 0.01, 0.79, 0.10, 0.00, 0.05],
             [0.00, 0.02, 0.03, 0.38, 0.31, 0.31],
             [0.02, 0.02, 0.11, 0.47, 0.69, 0.58]]),
-        ('University of North Carolina - Chapel Hill', [
-            [0.89, 0.01, 0.07, 0.00, 0.00, 0.05],
+        ('Arizona State University', [
+            [1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
             [0.07, 0.95, 0.05, 0.04, 0.00, 0.02],
             [0.01, 0.02, 0.86, 0.27, 0.16, 0.19],
             [0.01, 0.03, 0.00, 0.32, 0.29, 0.27],
             [0.02, 0.00, 0.03, 0.37, 0.56, 0.47]]),
         ('University of Alaska', [
-            [0.87, 0.01, 0.08, 0.00, 0.00, 0.04],
+            [0.125, 0.16666666666666666, 0.0, 0.3333333333333333, 0.0, 0.0],
             [0.09, 0.95, 0.02, 0.03, 0.00, 0.01],
             [0.01, 0.02, 0.71, 0.24, 0.13, 0.16],
             [0.01, 0.03, 0.00, 0.28, 0.24, 0.23],
@@ -160,9 +160,9 @@ if __name__ == '__main__':
     data = example_data()
     spoke_labels = data.pop(0)
 
-    fig, axes = plt.subplots(figsize=(6, 6), nrows=2, ncols=3,
+    fig, axes = plt.subplots(figsize=(6, 6), nrows=3, ncols=3,
                              subplot_kw=dict(projection='radar'))
-    fig.subplots_adjust(wspace=0.25, hspace=0.40, top=0.85, bottom=0.05)
+    fig.subplots_adjust(wspace=1, hspace=0.40, top=0.85, bottom=0.05)
 
     colors = ['b', 'r', 'g', 'm', 'y']
     # Plot the four cases from the example data on separate axes
@@ -177,7 +177,7 @@ if __name__ == '__main__':
 
     # add legend relative to top-left plot
     ax = axes[0, 0]
-    labels = ('2013', '2014', '2015', '2016', '2017')
+    labels = ('2012', '2014', '2015', '2016', '2017')
     legend = ax.legend(labels, loc=(1, 0),
                        labelspacing=0.1, fontsize='small')
 

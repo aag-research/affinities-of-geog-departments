@@ -25,17 +25,15 @@ headers[0] = 'University name'
 short_specialities_name = ['Human Geography', 'Human-Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
                             'Urban and Economic Geography', 'Methods']
 #creating short specialty database
-short_specialty_db={}
+specialty_groups_db={}
 for specialty in short_specialities_name:
-       if specialty not in short_specialty_db:
-              short_specialty_db[specialty]=[]
+       if specialty not in specialty_groups_db:
+              specialty_groups_db[specialty]=[]
 
 # Store the input data as a dictionary
 geog_programs_data_db = {}
-program_specialty_data={}
 for line_as_text in input_as_text[3:]:
        line_as_list = line_as_text.split('\t')
-       #print(line_as_list)
        if line_as_list[1] != '':
               program_data = dict(zip(headers, line_as_list))
               geog_programs_data_db[program_data['University name']] = program_data
@@ -46,59 +44,47 @@ specialties = headers[9:-12]
 data_for_radar_chart = [specialties]
 short_specialty_list = [[] for specialty in range(0,6)]
 
-#I know this is a little messy but the goal of this is to save the actually specialties into the short specialties dict
-for specialty in specialties:
-       for index in range(len(specialties)):
-              if index in [7,11,18,20,23,24,29,30] and specialty==specialties[index]:
-                     short_specialty_db['Human Geography'].append(specialty)
-              elif index in [6,7,10,17,5,0,33] and specialty==specialties[index]:
-                     short_specialty_db['Human-Environmental Interactions'].append(specialty)
-              elif index in [2,4,14,21] and specialty==specialties[index]:
-                     short_specialty_db['Physical Geography'].append(specialty)
-              elif index in [15,16,28] and specialty==specialties[index]:
-                     short_specialty_db['Geospatial Technologies'].append(specialty)
-              elif index in [8,9,31,32,22,27,26] and specialty==specialties[index]:
-                     short_specialty_db['Urban and Economic Geography'].append(specialty)
-              elif index in [3,13,12,19,1,2,25] and specialty==specialties[index]:
-                     short_specialty_db['Methods'].append(specialty)
+#adding specialities to short_specialties_db
+specialty_groups_db['Human Geography']= [specialties[sp_index] for sp_index in [7,11,18,20,23,24,29,30]]
+specialty_groups_db['Human-Environmental Interactions']= [specialties[sp_index] for sp_index in [6,10,17,5,0,33]]
+specialty_groups_db['Physical Geography']= [specialties[sp_index] for sp_index in [2,4,14,21]]
+specialty_groups_db['Geospatial Technologies']= [specialties[sp_index] for sp_index in [15,16,28]]
+specialty_groups_db['Urban and Economic Geography']= [specialties[sp_index] for sp_index in [8,9,31,32,22,27,26]]
+specialty_groups_db['Methods']= [specialties[sp_index] for sp_index in [3,13,12,19,1,2,25]]
 
-#making a new dictionary for the university specialization
-#the float (values) for the short specialities key are the amount of specialities that fall under the short_specialties
-#this is number we will put in the radar chart
+#Directory for university specializations
+'''
+for university, university_data in geog_programs_data_db.items():
+       #specialty_groups_db = {'group': {'list': [], 'count':0} for group in specialty_groups_db}
+       for short_specialty, specialty in specialty_groups_db.items():
+              if university_data[specialty] == 'X':
+                     group_specialty = specialty_groups_db[specialty]
+                     #specialty_groups_db['group']['list']=[specialty]
+       # for group in specialty_groups_db:
+       #        specialty_groups_db['group']['count']=len(specialty_groups_db[group]['list'])
+'''
 university_specialization_db={}
-for key, value in geog_programs_data_db.items():
-       university_specialization_db[key]={}
+for university_name, specialization in geog_programs_data_db.items():
+       university_specialization_db[university_name]={}
        university_total = [i for i in university_specialization_db.keys()]
-       for short_specialty,specialty in short_specialty_db.items():
+       for short_specialty,specialty in specialty_groups_db.items():
               count=0
               for spec in specialty:
-                     if value[spec]== 'X' and key in university_total:
+                     if specialization[spec]== 'X' and university_name in university_total:
                             count=count+1
                             specialty_ratio=count/len(specialty)
-                            university_specialization_db[key][short_specialty] = specialty_ratio
+                            university_specialization_db[university_name][short_specialty] = specialty_ratio
                      else:
                             count=count+0
                             specialty_ratio=count/len(specialty)
-                            university_specialization_db[key][short_specialty] = specialty_ratio
-
-
-
-
-
+                            university_specialization_db[university_name][short_specialty] = specialty_ratio
 
 #data_for_radar_chart_str = str(lists)
-
 data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
 #data_for_radar_chart_textfile.write(data_for_radar_chart_str)
 data_for_radar_chart_textfile.close()
 
 specialties_count = [0]*len(specialties)
-
-
-
-
-university_list=[]
-
 for university, program_data in geog_programs_data_db.items():
        program_specialties = [1 if program_data[specialty] == 'X' else 0 for specialty in specialties]
        #print(program_specialties)
@@ -107,22 +93,3 @@ for university, program_data in geog_programs_data_db.items():
 
 specialties_count_db = dict(zip(specialties, specialties_count))
 number_of_universities = len(geog_programs_data_db.keys())
-# for specialty, count in specialties_count_db.items():
-#        print(specialty, "%.0f%%" % (count/number_of_universities*100))
-
-# for university, specialty in geog_programs_data_db.items():
-#        for short_specialty in short_specialities_list:
-#               program_specialty_data[short_specialty]={}
-#               for key, values in specialty.items():
-#                      if (key, values) == (key, 'X'):
-#                             program_specialty_data.update({short_specialty:university})
-#                             print(program_specialty_data)
-       #program_specialty_data[short_specialty] = university
-#print(program_specialty_data)
-
-
-
-# for key, value in program_data.items():
-#        if key == 'Cultural Geography' and key == 'Gender' and key == 'Historical Geography' and key =='Political Geography' and key =='Social Geography' and key == 'Rural Geography' and key == 'Political Geography' and key == 'Population Geography' and key == 'Medical Geography' and  value =='X':
-#
-
