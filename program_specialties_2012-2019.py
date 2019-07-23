@@ -15,31 +15,34 @@ folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments\pro
 os.chdir(folder)
 
 # Read input data
-input_filename = r'program_specialties_2012.txt'
-input_as_text = open(input_filename).readlines()
+#No Program Data for 2013
+#Excluding 2016 temporarily because it is in different format than the rest
+input_filenames = [r'program_specialties_2012.txt', r'program_specialties_2014.txt', r'program_specialties_2015.txt',
+                   r'program_specialties_2018.txt', r'program_specialties_2017.txt', r'program_specialties_2019.txt']
 
-
-# Extract headers (note: there is a newline character (\n) in on of the
-# headers, which is why the headers seem to be on 2 lines
-headers = ''.join(input_as_text[1:3]).replace('\n', '').split('\t')
-headers[0] = 'University name'
-#Names of shortened specialities
-short_specialities_name = ['Human Geography', 'Human-Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
+geog_programs_data_db = {}
+for file_names in input_filenames:
+    input_as_text = open(file_names).readlines()
+    print(input_as_text[2])
+    headers = ''.join(input_as_text[1:3]).replace('\n', '').split('\t')
+    headers[0] = 'University name'
+    #Names of shortened specialities
+    short_specialities_name = ['Human Geography', 'Human-Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
                             'Urban and Economic Geography', 'Methods']
-#creating short specialty database
-specialty_groups_db={}
-for specialty in short_specialities_name:
+    #creating specialty groups database
+    specialty_groups_db={}
+    for specialty in short_specialities_name:
        if specialty not in specialty_groups_db:
               specialty_groups_db[specialty]=[]
-
-# Store the input data as a dictionary
-geog_programs_data_db = {}
-for line_as_text in input_as_text[3:]:
+    # Store the input data as a dictionary
+    for line_as_text in input_as_text[3:]:
        line_as_list = line_as_text.split('\t')
+       #print(line_as_list[1])
        if line_as_list[1] != '':
               program_data = dict(zip(headers, line_as_list))
+              print(program_data)
               geog_programs_data_db[program_data['University name']] = program_data
-
+'''
 # Store the specialties of each progam in a format
 # that would work for radar charts (in matplotlib)
 specialties = headers[9:-12]
@@ -55,16 +58,6 @@ specialty_groups_db['Urban and Economic Geography']= [specialties[sp_index] for 
 specialty_groups_db['Methods']= [specialties[sp_index] for sp_index in [3,13,12,19,1,2,25]]
 
 #Directory for university specializations
-'''
-for university, university_data in geog_programs_data_db.items():
-       #specialty_groups_db = {'group': {'list': [], 'count':0} for group in specialty_groups_db}
-       for short_specialty, specialty in specialty_groups_db.items():
-              if university_data[specialty] == 'X':
-                     group_specialty = specialty_groups_db[specialty]
-                     #specialty_groups_db['group']['list']=[specialty]
-       # for group in specialty_groups_db:
-       #        specialty_groups_db['group']['count']=len(specialty_groups_db[group]['list'])
-'''
 university_specialization_db={}
 for university_name, specialization in geog_programs_data_db.items():
        university_specialization_db[university_name]={}
@@ -95,3 +88,4 @@ for university, program_data in geog_programs_data_db.items():
 
 specialties_count_db = dict(zip(specialties, specialties_count))
 number_of_universities = len(geog_programs_data_db.keys())
+'''
