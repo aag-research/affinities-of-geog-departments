@@ -16,29 +16,15 @@ os.chdir(folder)
 
 # Read input data:
 #No Program Data for 2013
-
+input_filename = r'program_specialties_2016.txt'
+input_as_text = open(input_filename).readlines()
 #Excluding 2016 temporarily because it is in different format than the rest
-input_filenames = [r'program_specialties_2012.txt', r'program_specialties_2014.txt', r'program_specialties_2015.txt',
-                   r'program_specialties_2018.txt', r'program_specialties_2017.txt', r'program_specialties_2019.txt']
-university_specialization={}
-for file_name in input_filenames:
-    files_text = open(file_name).readlines()
-    university_name = files_text[2:]
-    for university in university_name:
-        if university not in university_specialization:
-            university_specialization[university]={}
-    specialties = ''.join(files_text[0]).replace('\n', '').split('\t')
+#input_filenames = [r'program_specialties_2012.txt', r'program_specialties_2014.txt', r'program_specialties_2015.txt',
+                   #r'program_specialties_2018.txt', r'program_specialties_2017.txt', r'program_specialties_2019.txt']
 
-
-
-
-
-
-
-
-
-
-'''
+headers = ''.join(input_as_text[1:3]).replace('\n', '').split('\t')
+headers[0] = 'University name'
+#Names of shortened specialities
 short_specialities_name = ['Human Geography', 'Human-Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
                             'Urban and Economic Geography', 'Methods']
 #creating specialty groups database
@@ -49,16 +35,16 @@ for specialty in short_specialities_name:
 
 # Store the input data as a dictionary
 geog_programs_data_db = {}
-for line_as_text in text_2014[2:]:
+for line_as_text in input_as_text[2:]:
     line_as_list = line_as_text.split('\t')
     #print(line_as_list[0])
     if line_as_list[0] != '':
-        program_data = dict(zip(headers_2014, line_as_list))
+        program_data = dict(zip(headers, line_as_list))
         geog_programs_data_db[program_data['University name']] = program_data
 
 # Store the specialties of each program in a format
 # that would work for radar charts (in matplotlib)
-specialties = headers_2014[1:37]
+specialties = headers[1:37]
 data_for_radar_chart = [specialties]
 del[specialties[8]]
 short_specialty_list = [[] for specialty in range(0,6)]
@@ -93,12 +79,15 @@ data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
 #data_for_radar_chart_textfile.write(data_for_radar_chart_str)
 data_for_radar_chart_textfile.close()
 
-
+'''
 specialties_count = [0]*len(specialties)
 for university, program_data in geog_programs_data_db.items():
        program_specialties = [1 if program_data[specialty] == 'X' else 0 for specialty in specialties]
        #print(program_specialties)
        data_for_radar_chart += [(university, program_specialties)]
        specialties_count = [sum(values) for values in zip(specialties_count, program_specialties)]
+
 specialties_count_db = dict(zip(specialties, specialties_count))
-number_of_universities = len(geog_programs_data_db.keys())'''
+number_of_universities = len(geog_programs_data_db.keys())
+
+'''
