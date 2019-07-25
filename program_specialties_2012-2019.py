@@ -22,37 +22,24 @@ input_filenames = [r'program_specialties_2012.txt', r'program_specialties_2014.t
 year_specialties =[]
 unwanted_specialties = ['Program Specialties', 'Associates', 'Bachelors','Masters','PhD', 'Certificate Program','Distance / Online','North America', 'Middle America', 'South America', 'Europe', 'Africa', 'Asia', 'Australia Oceania',
                              'Polar World', 'Middle East', 'Former Soviet Union', 'World Regional\n', '\t', '\n','']
-unique_specialty= []
-
+program_data_list= []
 university_specialization={}
 for file_name in input_filenames:
     files_text = open(file_name).readlines()
     specialty = files_text[0].split('\t')
     specialty[0]='University name'
     year_specialties.append(specialty)
-    #Original idea for getting program specialties
-    # for year in year_specialties:
-    #     for year_number in range(len(year)):
-    #         if year[year_number] not in unwanted_specialties and year[year_number] not in unique_specialty:
-    #             unique_specialty.append(year[year_number])
     university_data =''.join(files_text[2:]).split('\n')
     for university_name in university_data:
+        #clean names are seperated by tabs
         clean_university_names = university_name.split('\t')
         for name_values in range(len(clean_university_names)):
+            #making sure it only gets a university name and not a state name
             if len(clean_university_names) > 1 and clean_university_names[name_values] == 'X':
                 program_data = dict(zip(specialty, clean_university_names))
-                for unique_year in ['2012', '2014', '2015', '2016', '2017', '2018', '2019']:
-                    university_specialization[unique_year] = {}
-                university_specialization[unique_year]=program_data
-
-
-#Original idea for getting university name
-                #print(university_specialization)
-            # if len(clean_university_names) > 1 and clean_university_names[name_values] == 'X':
-            #     specific_names = clean_university_names[0]
-            #     #print(specific_names)
-            #     if specific_names not in university_specialization:
-
+                if program_data['University name']  not in university_specialization:
+                    university_specialization[program_data['University name']]={}
+                    university_specialization [program_data['University name']]= {'2012': program_data, '2014': program_data, '2015': program_data, '2017': program_data, '2018': program_data, '2019': program_data}
 
 
 
