@@ -36,8 +36,10 @@ for specialty in short_specialities_name:
 geog_programs_data_db = {}
 for line_as_text in input_as_text[3:]:
        line_as_list = line_as_text.split('\t')
+       #print(line_as_list[1])
        if line_as_list[1] != '':
               program_data = dict(zip(headers, line_as_list))
+              print(program_data)
               geog_programs_data_db[program_data['University name']] = program_data
 
 # Store the specialties of each progam in a format
