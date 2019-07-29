@@ -307,36 +307,36 @@ SASKATCHEWAN
 University of Regina	Canada	SK		X	X	X				X	X	X	X	X		X	X	X	X	X		X	X	X		X	X	X		X	X	X	X	X	X	X	X	X	X		X	X	adhk	a			d				h			k
 University of Saskatchewan	Canada	SK		X	X	X				X	X	X		X					X				X	X					X	X	X			X	X		X				X	X	ahk	a							h			k
 ARGENTINA																																																						
-Instituto de Geograf¡a ?Romualdo Ardissone? de la Universidad de Buenos Aires										X				X		X	X	X	X	X	X	X				X	X				X	X			X	X		X	X	X	X	X	c											
-Red Iberoamericana de Investigaci¢n en Transporte A‚reo																																								X														
+Instituto de Geografía “Romualdo Ardissone” de la Universidad de Buenos Aires										X				X		X	X	X	X	X	X	X				X	X				X	X			X	X		X	X	X	X	X	c											
+Red Iberoamericana de Investigación en Transporte Aéreo																																								X														
 Universidad Nacional del Sur			X	X	X	X			X	X	X	X	X	X		X		X	X		X	X	X	X	X		X	X		X	X	X	X	X	X	X	X	X	X		X	X	abcdefik											
 BRAZIL																																																						
-Associa‡?o de Ge¢grafos Brasileiros									X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X			X	X	X	X	X	X	X		X		X	X	X		X	X	k											
-Associa‡?o Profissional de Ge¢grafos de Santa Catarina								X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X													
-Universidade de Bras¡lia				X	X	X	X	X		X	X	X	X	X		X	X	X	X		X	X	X	X	X	X				X	X	X			X	X	X	X			X	X	ck											
+Associação de Geógrafos Brasileiros									X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X			X	X	X	X	X	X	X		X		X	X	X		X	X	k											
+Associação Profissional de Geógrafos de Santa Catarina								X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X	X													
+Universidade de Brasília				X	X	X	X	X		X	X	X	X	X		X	X	X	X		X	X	X	X	X	X				X	X	X			X	X	X	X			X	X	ck											
 Universidade de Caxias do Sul				X			X	X	X										X					X																														
 Universidade  do Estado do Rio de Janeiro				X	X		X		X		X	X	X	X		X			X		X	X	X	X	X	X	X			X		X	X		X	X	X	X	X	X	X	X	ck											
 Universidade Estadual de Londrina			X	X	X		X		X		X	X	X	X		X	X	X	X		X	X	X	X					X	X		X	X		X	X	X	X	X		X	X	c											
-Universidade  Estadual Paulista ?J£lio de Mesquita Filho?				X	X	X	X		X	X	X	X						X	X		X	X	X	X	X	X		X		X	X	X	X	X	X	X		X			X	X												
-Universidade Federal do Cear 				X	X	X	X			X	X	X	X	X		X		X	X		X	X	X	X		X		X		X	X	X	X		X		X	X	X		X	X	ck											
+Universidade  Estadual Paulista “Júlio de Mesquita Filho”				X	X	X	X		X	X	X	X						X	X		X	X	X	X	X	X		X		X	X	X	X	X	X	X		X			X	X												
+Universidade Federal do Ceará				X	X	X	X			X	X	X	X	X		X		X	X		X	X	X	X		X		X		X	X	X	X		X		X	X	X		X	X	ck											
 Universidade Federal da Grande Dourados				X			X		X		X	X	X	X		X		X	X		X	X	X	X		X		X		X	X	X	X		X		X	X	X		X	X	ck											
-Universidade Federal do Maranh?o				X			X			X		X		X			X		X		X		X	X						X	X	X	X	X	X	X	X	X			X	X	ck											
+Universidade Federal do Maranhão				X			X			X		X		X			X		X		X		X	X						X	X	X	X	X	X	X	X	X			X	X	ck											
 Universidade Federal de Mato Grosso do Sul				X						X														X																														
 Universidade Federal de Minas Gerais				X	X	X	X	X			X	X							X		X	X	X							X	X						X		X		X	X												
 Universidade Federal de Pernambuco									X	X	X		X	X		X	X	X	X		X	X	X							X	X		X		X	X		X	X		X	X	c											
-Universidade Federal do Piau¡ - UFPI					X		X														X	X																			X													
+Universidade Federal do Piauí - UFPI					X		X														X	X																			X													
 Universidade Federal do Rio de Janeiro				X	X	X	X		X	X	X	X	X	X		X	X	X			X	X	X	X		X	X				X	X	X	X			X			X	X	X	ek											
 Universidade Federal de Santa Catarina				X	X	X	X			X	X	X	X	X		X	X	X	X		X	X	X	X		X				X	X	X	X		X		X	X			X	X	k											
-Universidade Federal de Uberlƒndia				X			X				X	X	X	X			X	X	X		X	X	X	X	X	X		X	X	X	X	X	X	X	X	X	X	X		X	X	X	k											
+Universidade Federal de Uberlândia				X			X				X	X	X	X			X	X	X		X	X	X	X	X	X		X	X	X	X	X	X	X	X	X	X	X		X	X	X	k											
 Universidade Luterana do Brasil							X		X		X	X	X			X		X	X		X	X	X	X						X	X	X						X	X		X	X	ck											
 Universidade Regional do Cariri 									X		X	X		X		X	X		X		X	X	X				X			X	X		X		X	X		X			X	X	c											
 Universidade Regional do Noroeste do Estado do Rio Grande do Sul							X	X	X		X	X	X	X		X	X	X	X		X	X	X	X		X		X		X	X	X	X	X	X		X	X	X		X	X	k											
 CHILE																																																						
 Pontificia Universidad Catolica de Chile				X							X	X	X	X				X	X				X	X		X	X			X	X		X	X			X	X			X	X												
 COLOMBIA																																																						
-"Asociaci¢n Colombiana de Ge¢grafos, ACOGE"										X	X	X	X			X		X	X	X	X	X	X	X		X	X			X	X	X	X	X	X	X		X	X			X												
-Grupo de Investigaci¢n Interinstitucional Geopaideia																					X																																	
-"Raz¢n Cartogr fica, Red de Historia de las Geograf¡as y Cartograf¡as de Colombia"												X									X	X		X			X					X											bc											
+"Asociación Colombiana de Geógrafos, ACOGE"										X	X	X	X			X		X	X	X	X	X	X	X		X	X			X	X	X	X	X	X	X		X	X			X												
+Grupo de Investigación Interinstitucional Geopaideia																					X																																	
+"Razón Cartográfica, Red de Historia de las Geografías y Cartografías de Colombia"												X									X	X		X			X					X											bc											
 "Universidad de los Andes, Bogota"					X											X	X										X												X				c											
 Universidad del Valle			X	X						X											X					X					X																							
 Universidad Externado de Colombia			X						X	X	X	X	X			X		X	X			X	X	X			X	X		X		X		X			X	X	X		X													
@@ -351,19 +351,19 @@ Pontificia Universidad Catolica de Ecuador				X	X					X									X												X
 MEXICO																																																						
 "Centro de Investigaciones en Geografia Ambiental, UNAM"											X	X				X						X		X		X	X				X						X		X		X													
 El Colegio de Michoacan					X									X			X	X				X					X					X			X			X			X		b											
-Instituto Nacional de Estad¡stica y Geograf¡a										X	X	X	X	X	X	X	X	X	X	X	X	X	X	X		X	X		X	X	X	X	X	X	X	X	X	X	X	X	X	X	a											
-Instituto Polit‚cnico Nacional					X	X																		X																														
-Universidad Aut¢noma de Ciudad Juarez				X	X	X			X	X	X	X	X	X			X		X		X		X	X	X	X				X	X		X		X		X			X	X	X	a											
-Universidad Aut¢noma del Estado de M‚xico				X	X		X			X		X		X				X	X					X		X				X	X		X				X		X		X													
+Instituto Nacional de Estadística y Geografía										X	X	X	X	X	X	X	X	X	X	X	X	X	X	X		X	X		X	X	X	X	X	X	X	X	X	X	X	X	X	X	a											
+Instituto Politécnico Nacional					X	X																		X																														
+Universidad Autónoma de Ciudad Juarez				X	X	X			X	X	X	X	X	X			X		X		X		X	X	X	X				X	X		X		X		X			X	X	X	a											
+Universidad Autónoma del Estado de México				X	X		X			X		X		X				X	X					X		X				X	X		X				X		X		X													
 Universidad de Guadalajara 			X	X	X							X									X			X		X					X				X								c											
 PANAMA																																																						
 Universidad de Panama 				X						X	X	X	X	X					X				X	X	X	X				X	X				X		X	X		X	X	X												
 PERU																																																						
-Pontificia Universidad Cat¢lica del Peru 			X	X						X	X	X		X		X			X							X					X				X						X	X	c											
+Pontificia Universidad Católica del Peru 			X	X						X	X	X		X		X			X							X					X				X						X	X	c											
 PUERTO RICO																																																						
 Sociedad de Historia Natural de Puerto Rico (Centro Ambiental Santa Ana)														X							X									X						X																		
 URUGUAY																																																						
-Asociaci¢n  Nacional de Profesores de Geograf¡a-Uruguay																			X		X	X																																
+Asociación  Nacional de Profesores de Geografía-Uruguay																			X		X	X																																
 Centro Regional de Profesores del Norte			X																		X																																	
 VENEZUELA																																																						
 Universidad Central de Venezuela 				X						X	X	X	X	X				X				X	X	X						X	X	X	X	X	X		X	X			X													
