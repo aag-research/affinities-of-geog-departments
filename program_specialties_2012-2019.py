@@ -11,8 +11,8 @@
 import os
 import sys
 
-folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments\program_specialties'
-#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments\program_specialties'
+folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 # Read input data:
@@ -59,6 +59,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
         #do you think you can help format this so it stops before it gets to Canada
         for line_as_text in input_as_text[headers_index+1:]:
             line_as_list = line_as_text.split('\t')
+            if 'CANADA' in line_as_list: break
             if 'X' in line_as_list:
                 program_data = dict(zip(headers, line_as_list))
                 university_name_draft = program_data['University name']
