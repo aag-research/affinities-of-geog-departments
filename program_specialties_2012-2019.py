@@ -11,14 +11,30 @@
 import os
 import sys
 
-folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
+<<<<<<< HEAD
 #Read input data from 2012-2019
 #No Program Data for 2013
+=======
+
+# Program specialties groupings
+specialty_groups_filename = 'program_specialties\program_specialties_groupings.txt'
+input_as_text = open(specialty_groups_filename).readlines()
+input_as_list = [line_as_text.strip().replace('"', '').split('\t') for line_as_text in input_as_text[1:]]
+specialty_groups_db = {specialty : group for specialty, group in input_as_list}
+specialties = list(specialty_groups_db.keys())
+specialty_groups = list(set(specialty_groups_db.values()))
+
+#Read input data from 2012-2019 (No Program Data for 2013)
+>>>>>>> acf3572f0467ddc6247f9b6f2b62a0cbcf82ddb4
 geog_programs_data_db = {}
 for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
+    input_filename = r'program_specialties\program_specialties_%s.txt' % year
+    input_as_text = open(input_filename).readlines()
     # Need to create exception for 2012 due to formatting
+<<<<<<< HEAD
     if year == 2012:
         file_name_2012 = r'program_specialties/program_specialties_2012.txt'
         input_as_text_2012 = open(file_name_2012).readlines()
@@ -140,46 +156,73 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     geog_programs_data_db[university_name][year]['Specialty groups']['subject_totals'] = {}
                     geog_programs_data_db[university_name][year]['Specialty groups'][
                         'subject_totals'] = subject_totals_db_2016
+=======
+    if year == 2012: header_start, header_end = 1, 3
+    elif year == 2016: header_start, header_end = 1, 2
+    else: header_start, header_end = 0, 1
+    headers = ''.join(input_as_text[header_start:header_end]).replace('"', '').replace('\n', '')
+    headers = headers.split('\t')
+    headers[0] = 'University name'
+    for specialty in specialties:
+        if specialty not in headers:
+            for old, new in [(' Resource Management', ''), ('/', ' / '), ('/', ' and '), ('/Communication', ''),
+                             ('Conservation, Land Use, Resource Management', 'Cnsrvtn, Land Use, Resource Mngmt'),
+                             (', Resource Management', ''),
+                             ('Climatology/Meteorology', 'Climatography/Meterology'), ('Certification', 'Certfication')]:
+                if specialty.replace(old, new) in headers:
+                    header_index = headers.index(specialty.replace(old, new))
+                    headers[header_index] = specialty
+    for line_as_text in input_as_text[header_end:]:
+        line_as_list = line_as_text.split('\t')
+        if 'CANADA' in line_as_list: break
+        if 'X' in line_as_list:
+            program_data = dict(zip(headers, line_as_list))
+            university_name = program_data['University name']
+            if 'Department of State' in  university_name: continue
+            for character in [', ', ' - ', '-', ' at ']: university_name = university_name.replace(character, ' ')
+            for character in ['"', '.', ' (UCLA)']: university_name = university_name.replace(character, '')
+            for old, new in [('Univeristy', 'University'), ('Univesity', 'University'), ('Fayettville', 'Fayetteville'), ('Colege', 'College'),
+                             ('United States', 'US'), ('University of Hawaii', 'University of Hawaii Manoa'),
+                             ('University of Alaska', 'University of Alaska Fairbanks'), ('University of Arkansas Fayetteville', 'University of Arkansas'),
+                             (' of the State University of New York', ' SUNY'), (' State University of New York', ' SUNY'),
+                             ('State University of New York', 'SUNY'), (' of the City University of New York', ' CUNY'),
+                             ('The Pennsylvania State University', 'Pennsylvania State University'), ('Penn State University', 'Pennsylvania State University'),
+                             ('The University of Texas San Antonio','University of Texas San Antonio'), ('Virginia Tech University', 'Virginia Tech'),
+                             ('The Ohio State University', 'Ohio State University'), ('University of Illinois Urbana Champaign', 'University of Illinois')]:
+                university_name = university_name.replace(old, new)
+            university_name = university_name.lower().strip()
+            if university_name not in geog_programs_data_db: geog_programs_data_db[university_name] = {}
+            geog_programs_data_db[university_name][year] = program_data
+            geog_programs_data_db[university_name][year]['Specialty Groups'] = {specialty_group : {'List': []} for specialty_group in specialty_groups}
+            for header in headers:
+                if header in specialties:
+                    if geog_programs_data_db[university_name][year][header] == 'X':
+                        specialty_group = specialty_groups_db[header]
+                        geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['List'] += [header]
+            for specialty_group in specialty_groups:
+                specialties_in_group = geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['List']
+                max_spacialties_in_group = list(specialty_groups_db.values()).count(specialty_group)
+                if specialty_group == 'Human-Environmental Interactions':
+                    if 'Political Ecology' in specialties_in_group and 'Cultural Ecology' in specialties_in_group:
+                        specialties_in_group.remove('Political Ecology')
+                        if 'Energy' in specialties_in_group and 'Conservation, Land Use, Resource Management' in specialties_in_group:
+                            specialties_in_group.remove('Energy')
+                    max_spacialties_in_group = max_spacialties_in_group - 2
+                geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Total'] = len(specialties_in_group)
+                geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Ratio'] = len(specialties_in_group)/max_spacialties_in_group
+>>>>>>> acf3572f0467ddc6247f9b6f2b62a0cbcf82ddb4
 
-                # Adding subjects to specialty groups for all other years
-                else:
-                    #Years 2014,2015,2017,2018 and 2019 have the same index for their specialties
-                    geog_programs_data_db[university_name][year]['Specialty groups'] = {
-                        'Human Geography': [headers[specialty_all] for specialty_all in
-                                            [13, 17, 24, 29, 30, 36, 35, 26]],
-                        'Human-Environmental Interactions': [headers[specialty_all] for specialty_all in
-                                                             [16, 12, 11, 6, 23, 39]],
-                        'Physical Geography': [headers[specialty_all] for specialty_all in [8, 27, 20, 10]],
-                        'Geospatial Technologies': [headers[specialty_all] for specialty_all in [34, 21, 22]],
-                        'Urban and Economic Geography': [headers[specialty_all] for specialty_all in
-                                                         [38, 33, 32, 28, 37, 14, 15]],
-                        'Methods': [headers[specialty_all] for specialty_all in [18, 19, 9, 7, 25, 31]]}
+# print an example
+specialty_group = 'Human-Environmental Interactions'
+university_name = 'university of delaware'
+for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
+    print(year)
+    print(geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group])
+    print('\n')
 
-                    #Calculates program specialties for 2014, 2015, 2017, 2018 and 2019
-                    subject_totals_db = {}
-                    for group_specialty_name, subject_lists in geog_programs_data_db[university_name][year][
-                    'Specialty groups'].items():
-                        subject_totals = 0
-                        for subject in subject_lists:
-                            if geog_programs_data_db[university_name][year][
-                            subject] == 'X' and subject in subject_lists:
-                                subject_totals = subject_totals + 1
-                                subject_totals_ratio = subject_totals / (len(subject_lists))
-                            else:
-                                subject_totals = subject_totals + 0
-                                subject_totals_ratio = subject_totals / (len(subject_lists))
-                            subject_totals_db[group_specialty_name] = {}
-                            subject_totals_db[group_specialty_name]['Whole number'] = {}
-                            subject_totals_db[group_specialty_name]['Whole number'] = subject_totals
-                            subject_totals_db[group_specialty_name]['Float'] = {}
-                            subject_totals_db[group_specialty_name]['Float'] = subject_totals_ratio
-                    geog_programs_data_db[university_name][year]['Specialty groups']['subject_totals'] = {}
-                    geog_programs_data_db[university_name][year]['Specialty groups'][
-                    'subject_totals'] = subject_totals_db
-
-#use to check for repeated universities
-# for university, years in geog_programs_data_db.items():
-#     if len(years) < 3:
-#         print(len(years), university, years.keys())
-        #print(len(years),university, years)
-
+###use to check for repeated universities
+### for university, years in geog_programs_data_db.items():
+###     if len(years) < 3:
+###         print(len(years), university, years.keys())
+##        #print(len(years),university, years)
+##
