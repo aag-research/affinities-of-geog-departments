@@ -15,14 +15,9 @@ folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
 #folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
-# Read input data:
+#Read input data from 2012-2019
 #No Program Data for 2013
-#Excluding 2016 temporarily because it is in different format than the rest
-unwanted_specialties = ['Program Specialties', 'Associates', 'Bachelors','Masters','PhD', 'Certificate Program','Distance / Online','North America', 'Middle America', 'South America', 'Europe', 'Africa', 'Asia', 'Australia Oceania',
-                             'Polar World', 'Middle East', 'Former Soviet Union', 'World Regional\n', '\t', '\n','']
-specialty_groups_db={}
 geog_programs_data_db = {}
-#subject_totals_db = {}
 for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
     # Need to create exception for 2012 due to formatting
     if year == 2012:
@@ -45,6 +40,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                 university_name_2012 = university_name_2012.lower()
                 geog_programs_data_db[university_name_2012] = {}
                 geog_programs_data_db[university_name_2012][year] = program_data_2012
+                #Adding subjects to specialty groups
                 geog_programs_data_db[university_name_2012][year]['Specialty groups'] = {}
                 geog_programs_data_db[university_name_2012][year]['Specialty groups'] = {'Human Geography': [headers_2012[specialty_2012] for specialty_2012 in [16,20,27,32,39,38,33,29]],
                                                                                          'Human-Environmental Interactions': [headers_2012[specialty_2012] for specialty_2012 in [15,14,19,9,42,26,]],
@@ -52,24 +48,25 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                                                                                          'Geospatial Technologies': [headers_2012[specialty_2012] for specialty_2012 in [37,24,25]],
                                                                                          'Urban and Economic Geography': [headers_2012[specialty_2012] for specialty_2012 in [41,36,35,31,40,17,18]],
                                                                                          'Methods': [headers_2012[specialty_2012] for specialty_2012 in [21,22,28,10,12,34,]]}
-                subject_totals_db = {}
-                #Calculates program specialties per university
-                for group_specialty_name, subject_lists in geog_programs_data_db[university_name_2012][year]['Specialty groups'].items():
-                    subject_totals = 0
-                    for subject in subject_lists:
-                        if geog_programs_data_db[university_name_2012][year][subject]== 'X' and subject in subject_lists:
-                            subject_totals = subject_totals+1
-                            subject_totals_ratio = subject_totals/(len(subject_lists))
+
+                subject_totals_db_2012 = {}
+                #Calculates program specialties for universities in 2012
+                for group_specialty_name_2012, subject_lists_2012 in geog_programs_data_db[university_name_2012][year]['Specialty groups'].items():
+                    subject_totals_2012 = 0
+                    for subject in subject_lists_2012:
+                        if geog_programs_data_db[university_name_2012][year][subject]== 'X' and subject in subject_lists_2012:
+                            subject_totals_2012 = subject_totals_2012+1
+                            subject_totals_ratio_2012 = subject_totals_2012/(len(subject_lists_2012))
                         else:
-                            subject_totals = subject_totals + 0
-                            subject_totals_ratio = subject_totals/(len(subject_lists))
-                        subject_totals_db[group_specialty_name] = {}
-                        subject_totals_db[group_specialty_name]['Whole number'] = {}
-                        subject_totals_db[group_specialty_name]['Whole number'] = subject_totals
-                        subject_totals_db[group_specialty_name]['Float'] = {}
-                        subject_totals_db[group_specialty_name]['Float'] = subject_totals_ratio
+                            subject_totals_2012 = subject_totals_2012 + 0
+                            subject_totals_ratio_2012 = subject_totals_2012/(len(subject_lists_2012))
+                        subject_totals_db_2012[group_specialty_name_2012] = {}
+                        subject_totals_db_2012[group_specialty_name_2012]['Whole number'] = {}
+                        subject_totals_db_2012[group_specialty_name_2012]['Whole number'] = subject_totals_2012
+                        subject_totals_db_2012[group_specialty_name_2012]['Float'] = {}
+                        subject_totals_db_2012[group_specialty_name_2012]['Float'] = subject_totals_ratio_2012
                 geog_programs_data_db[university_name_2012][year]['Specialty groups']['subject_totals'] = {}
-                geog_programs_data_db[university_name_2012][year]['Specialty groups']['subject_totals'] = subject_totals_db
+                geog_programs_data_db[university_name_2012][year]['Specialty groups']['subject_totals'] = subject_totals_db_2012
 
     else:
         input_filename = r'program_specialties/program_specialties_%s.txt' % year
@@ -94,17 +91,24 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
             if 'X' in line_as_list:
                 program_data = dict(zip(headers, line_as_list))
                 university_name_draft = program_data['University name']
-                #start modifying the university names here
+                #Modifying university names for the rest the years
                 university_name = university_name_draft.replace(', ', ' ').replace(' - ', ' ').replace('-', ' ').replace('"', '') \
                     .replace('.', '').replace('United States', 'US').replace(' at ', ' ').replace('Univeristy', 'University').replace(' (UCLA)', '') \
-                    .replace('University of Arkansas Fayettville', 'University of Arkansas').replace('University of Arkansas Fayetteville', 'University of Arkansas')
+                    .replace('University of Arkansas Fayettville', 'University of Arkansas').replace('University of Arkansas Fayetteville', 'University of Arkansas')\
+                    .replace('Colege', 'college').replace('Univesity', 'University').replace('The Pennsylvania State University', 'Pennsylvania State University')\
+                    .replace('Penn State University', 'Pennsylvania State University').replace('The University of Texas San Antonio','University of Texas San Antonio')\
+                    .replace('Virginia Tech University', 'Virginia Tech').replace('Virginia Tech ', 'Virginia Tech')\
+                    .replace('University of Arizona ', 'University of Arizona').replace('The Ohio State University', 'Ohio State University')\
+                    .replace('Department of State', 'US Department of State').replace('University of Illinois Urbana Champaign', 'University of Illinois')
                 university_name = university_name.lower()
                 if university_name not in geog_programs_data_db:
                     geog_programs_data_db[university_name] = {}
                 geog_programs_data_db[university_name][year] = program_data
                 geog_programs_data_db[university_name][year]['Specialty groups'] = {}
+                #Exception for 2016 because it specialties have a different index
                 if year == 2016:
                     headers_2016 = headers
+                    #Adding subjects to 2016 dictionaries
                     geog_programs_data_db[university_name][year]['Specialty groups'] = {
                     'Human Geography': [headers_2016[specialty_2016] for specialty_2016 in
                                         [8, 12, 19, 24, 31, 30, 25, 21]],
@@ -115,14 +119,31 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     'Urban and Economic Geography': [headers_2016[specialty_2016] for specialty_2016 in
                                                      [33, 28, 27, 23, 32, 10, 9]],
                     'Methods': [headers_2016[specialty_2016] for specialty_2016 in [2, 13, 20, 14, 4, 26]]}
-                    geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {}
-                    geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {'Human Geography': 0,
-                                                                                                 'Human-Environmental Interactions': 0,
-                                                                                                 'Physical Geography': 0,
-                                                                                                 'Geospatial Technologies': 0,
-                                                                                                 'Urban and Economic Geography': 0,
-                                                                                                 'Methods': 0}
+                    #Calculates program specialties for universities in 2016
+                    subject_totals_db_2016 = {}
+                    for group_specialty_name_2016, subject_lists_2016 in geog_programs_data_db[university_name][year][
+                        'Specialty groups'].items():
+                        subject_totals_2016 = 0
+                        for subject in subject_lists_2016:
+                            if geog_programs_data_db[university_name][year][
+                                subject] == 'X' and subject in subject_lists_2016:
+                                subject_totals_2016 = subject_totals_2016 + 1
+                                subject_totals_ratio_2016 = subject_totals_2016 / (len(subject_lists_2016))
+                            else:
+                                subject_totals_2016 = subject_totals_2016 + 0
+                                subject_totals_ratio_2016 = subject_totals_2016 / (len(subject_lists_2016))
+                            subject_totals_db_2016[group_specialty_name_2016] = {}
+                            subject_totals_db_2016[group_specialty_name_2016]['Whole number'] = {}
+                            subject_totals_db_2016[group_specialty_name_2016]['Whole number'] = subject_totals_2016
+                            subject_totals_db_2016[group_specialty_name_2016]['Float'] = {}
+                            subject_totals_db_2016[group_specialty_name_2016]['Float'] = subject_totals_ratio_2016
+                    geog_programs_data_db[university_name][year]['Specialty groups']['subject_totals'] = {}
+                    geog_programs_data_db[university_name][year]['Specialty groups'][
+                        'subject_totals'] = subject_totals_db_2016
+
+                # Adding subjects to specialty groups for all other years
                 else:
+                    #Years 2014,2015,2017,2018 and 2019 have the same index for their specialties
                     geog_programs_data_db[university_name][year]['Specialty groups'] = {
                         'Human Geography': [headers[specialty_all] for specialty_all in
                                             [13, 17, 24, 29, 30, 36, 35, 26]],
@@ -133,20 +154,32 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                         'Urban and Economic Geography': [headers[specialty_all] for specialty_all in
                                                          [38, 33, 32, 28, 37, 14, 15]],
                         'Methods': [headers[specialty_all] for specialty_all in [18, 19, 9, 7, 25, 31]]}
-                #creating count dictionary
-                geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {}
-                geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {'Human Geography' : 0,
-                                                                                                 'Human-Environmental Interactions': 0,
-                                                                                                 'Physical Geography': 0,
-                                                                                                 'Geospatial Technologies': 0,
-                                                                                                 'Urban and Economic Geography': 0,
-                                                                                                 'Methods': 0}
 
-
+                    #Calculates program specialties for 2014, 2015, 2017, 2018 and 2019
+                    subject_totals_db = {}
+                    for group_specialty_name, subject_lists in geog_programs_data_db[university_name][year][
+                    'Specialty groups'].items():
+                        subject_totals = 0
+                        for subject in subject_lists:
+                            if geog_programs_data_db[university_name][year][
+                            subject] == 'X' and subject in subject_lists:
+                                subject_totals = subject_totals + 1
+                                subject_totals_ratio = subject_totals / (len(subject_lists))
+                            else:
+                                subject_totals = subject_totals + 0
+                                subject_totals_ratio = subject_totals / (len(subject_lists))
+                            subject_totals_db[group_specialty_name] = {}
+                            subject_totals_db[group_specialty_name]['Whole number'] = {}
+                            subject_totals_db[group_specialty_name]['Whole number'] = subject_totals
+                            subject_totals_db[group_specialty_name]['Float'] = {}
+                            subject_totals_db[group_specialty_name]['Float'] = subject_totals_ratio
+                    geog_programs_data_db[university_name][year]['Specialty groups']['subject_totals'] = {}
+                    geog_programs_data_db[university_name][year]['Specialty groups'][
+                    'subject_totals'] = subject_totals_db
 
 #use to check for repeated universities
 # for university, years in geog_programs_data_db.items():
-#     if len(years) < 4:
-#         #print(university, len(years))
-#         print(len(years),university, years)
+#     if len(years) < 3:
+#         print(len(years), university, years.keys())
+        #print(len(years),university, years)
 
