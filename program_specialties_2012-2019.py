@@ -14,7 +14,7 @@ import sys
 folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
 #folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
-
+name_headers = open('headers_name.txt', 'w')
 #Read input data from 2012-2019
 #No Program Data for 2013
 geog_programs_data_db = {}
@@ -25,6 +25,9 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
         input_as_text_2012 = open(file_name_2012).readlines()
         headers_2012 = ''.join(input_as_text_2012[1:3]).replace('\n', '').split('\t')
         headers_2012[0] = 'University name'
+        for header in headers_2012:
+            name_headers.write(header + '\n')
+        #print(len(headers_2012))
         for line_as_text_2012 in input_as_text_2012[3:272]:
             line_as_list_2012 = line_as_text_2012.split('\t')
             if 'X' in line_as_list_2012:
@@ -75,6 +78,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
         else: headers_index = 0
         headers = input_as_text[headers_index].split('\t')
         headers[0] = 'University name'
+        print(len(headers))
         for specialty in headers:
             if specialty == 'Energy' or 'Political Ecology':
                 try: headers.remove('Energy')
@@ -108,6 +112,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                 #Exception for 2016 because it specialties have a different index
                 if year == 2016:
                     headers_2016 = headers
+                    #print(len(headers_2016))
                     #Adding subjects to 2016 dictionaries
                     geog_programs_data_db[university_name][year]['Specialty groups'] = {
                     'Human Geography': [headers_2016[specialty_2016] for specialty_2016 in
@@ -183,3 +188,4 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
 #         print(len(years), university, years.keys())
         #print(len(years),university, years)
 
+name_headers.close()

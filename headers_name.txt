@@ -1,0 +1,55 @@
+University name
+Country
+State
+Associates
+Bachelors
+Masters
+PhD
+Certificate Program
+Distance/Online Program
+Agricultural Geography
+Applied Geography
+Biogeography
+Cartography
+Climatology/Meteorology
+"Conservation, Land Use, Resource Management"
+Cultural Ecology
+Cultural Geography
+Economic Development
+Economic Geography
+Environmental Studies
+Gender
+Geographic Education
+Geographic Thought
+Geomorphology
+GIS
+GIS Certification Program
+Hazards
+Historical Geography
+Location Theory
+Medical Geography
+Physical Geography (General)
+"Planning (Regional, Urban)"
+Political Geography
+Population Geography
+Quantitative Methods
+Regional Development
+Recreation and Tourism
+Remote Sensing
+Rural Geography
+Social Geography
+Transportation/Communication
+Urban Geography
+Water Resources
+Regional Geography
+North America
+Middle America
+South America
+Europe
+Africa
+Asia
+Australia and Oceania
+Polar World
+Middle East
+Former Soviet Union
+World
