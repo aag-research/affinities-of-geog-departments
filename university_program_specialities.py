@@ -1,6 +1,6 @@
 # Author:                       Eni Awowale & Coline Dony
 # Date first written:           June 27, 2019
-# Date last updated:            July 23, 2019
+# Date last updated:            August 1, 2019
 # Purpose:                      Determine U.S. University's levels of specialization
 
 # Problem Statement:
@@ -83,11 +83,6 @@ for university_name, specialization in geog_programs_data_db.items():
                             specialty_ratio=count/len(specialty)
                             university_specialization_db[university_name][short_specialty] = specialty_ratio
 
-#data_for_radar_chart_str = str(lists)
-data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
-#data_for_radar_chart_textfile.write(data_for_radar_chart_str)
-data_for_radar_chart_textfile.close()
-
 specialties_count = [0]*len(specialties)
 for university, program_data in geog_programs_data_db.items():
        program_specialties = [1 if program_data[specialty] == 'X' else 0 for specialty in specialties]
@@ -97,3 +92,11 @@ for university, program_data in geog_programs_data_db.items():
 
 specialties_count_db = dict(zip(specialties, specialties_count))
 number_of_universities = len(geog_programs_data_db.keys())
+
+data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
+for data in data_for_radar_chart:
+       str_data = str(data)
+       data_for_radar_chart_textfile.write(str_data + '\n')
+data_for_radar_chart_str = str(data_for_radar_chart)
+#data_for_radar_chart_textfile.write(data_for_radar_chart_str)
+data_for_radar_chart_textfile.close()

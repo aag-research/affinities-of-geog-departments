@@ -21,7 +21,8 @@ polygon is not aligned with the radial axes.
 """
 
 import numpy as np
-
+import os
+import sys
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, RegularPolygon
 from matplotlib.path import Path
@@ -30,6 +31,8 @@ from matplotlib.projections import register_projection
 from matplotlib.spines import Spine
 from matplotlib.transforms import Affine2D
 
+folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+os.chdir(folder)
 
 def radar_factory(num_vars, frame='circle'):
     """Create a radar chart with `num_vars` axes.
@@ -112,7 +115,6 @@ def radar_factory(num_vars, frame='circle'):
 
 
 def example_data():
-    #geog_affinities_data = open('affinity_data.txt').readlines()
     data = [
         #below are the program specialities
         ['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
@@ -120,18 +122,19 @@ def example_data():
         ('University of Maryland, College Park', [
             [.375, .6666666666666666, 1.0, 1.0,0.14285714285714285,0.42857142857142855,], #2012
             [0, 0, 0, 0, 0, 0], #2014
-            [0, 0, 0, 0, 0, 0],   #2015
-            [0.25, 0.5, 0.25, 1, 0.375, 0],      #2016
-            [0, 0, 0, 0, 0, 0],        #2017
-            [0, 0, 0, 0, 0, 0],        #2018
-            [0., 0., 0., 0., 0., 0.]]), #2019
+            [0.625, 0.5, 0.625, 1, 0.375, 0], #2015
+            [0.25, 0.5, 0.25, 1, 0.43, 0],                 #2016
+            [0.25, 0.5, 0.25, 1, 0.43, 0],        #2017
+            [0.25, 0.5, 0.25, 1, 0.43, 0],        #2018
+            [0.25, 0.5, 0.25, 1, 0.43, 0]]), #2019
         ('University of Colorado Boulder', [
-            [0.625, 0.8333333333333334, 1.0, 1.0, 0.7142857142857143,0.7142857142857143],
-            [0, 0., 0., 0., 0.00, 0.],
-            [0, 0, 0, 0, 0, 0],
-            [0.75, 0.8333333333333334, 1, 1, 0.5, 0.3333333333333333],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0]]),
+            [0.625, 0.8333333333333334, 1.0, 1.0, 0.7142857142857143,0.6666666666666666],#2012
+            [0.625, 0.8333333333333334, 1, 1, 0.8571428571428571, 0.3333333333333333],#2014
+            [0.375, 0.8333333333333334, 1, 1, 0.5714285714285714, 0.3333333333333333],#2015
+            [0.75, 0.8333333333333334, 1, 1, 0.5714285714285714, 0.3333333333333333], #2016
+            [0.75, 0.8333333333333334, 1, 1, 0.7142857142857143, 0.5],#2017
+            [0.75, 0.8333333333333334, 1, 1, 0.7142857142857143, 0.5],#2018
+            [0.75, 0.8333333333333334, 1, 1, 0.7142857142857143, 0.5]]), #2019
         ('Auburn University', [
             [0.375, 0.3333333333333333, 0.5, 0.6666666666666666, 0.2857142857142857, 0.42857142857142855],
             [0, 0, 0, 0, 0, 0],
@@ -160,7 +163,8 @@ def example_data():
 
     ]
     return data
-    #geog_affinities_data.close()
+
+
 
 if __name__ == '__main__':
     N = 6
@@ -172,8 +176,8 @@ if __name__ == '__main__':
     fig, axes = plt.subplots(figsize=(6, 6), nrows=3, ncols=3,
                              subplot_kw=dict(projection='radar'))
     fig.subplots_adjust(wspace=1, hspace=0.40, top=0.85, bottom=0.05)
-
-    colors = ['b', 'r', 'g', 'm', 'y', 'c', 'k']
+    #'#fc9403' is color orange
+    colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403']
     # Plot the four cases from the example data on separate axes
     for ax, (title, case_data) in zip(axes.flat, data):
         ax.set_rgrids([0.2, 0.4, 0.6, 0.8])

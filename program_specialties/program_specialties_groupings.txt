@@ -1,0 +1,37 @@
+Specialty	Specialty Group
+Cultural Geography	Human Geography
+Gender	Human Geography
+Historical Geography	Human Geography
+Political Geography	Human Geography
+Social Geography	Human Geography
+Rural Geography	Human Geography
+Population Geography	Human Geography
+Medical Geography	Human Geography
+Environmental Studies	Human-Environmental Interactions
+Cultural Ecology	Human-Environmental Interactions
+Political Ecology	Human-Environmental Interactions
+"Conservation, Land Use, Resource Management"	Human-Environmental Interactions
+Energy	Human-Environmental Interactions
+Agricultural Geography	Human-Environmental Interactions
+Water Resources	Human-Environmental Interactions
+Hazards	Human-Environmental Interactions
+Biogeography	Physical Geography
+Climatology/Meteorology	Physical Geography
+Geomorphology	Physical Geography
+Physical Geography (General)	Physical Geography
+Remote Sensing	Geospatial Technologies
+GIS	Geospatial Technologies
+GIS Certification Program	Geospatial Technologies
+Urban Geography	Urban and Economic Geography
+Recreation and Tourism	Urban and Economic Geography
+Regional Development	Urban and Economic Geography
+"Planning (Regional, Urban)"	Urban and Economic Geography
+Transportation/Communication	Urban and Economic Geography
+Economic Development	Urban and Economic Geography
+Economic Geography	Urban and Economic Geography
+Geographic Thought	Methods
+Geographic Education	Methods
+Location Theory	Methods
+Applied Geography	Methods
+Cartography	Methods
+Quantitative Methods	Methods

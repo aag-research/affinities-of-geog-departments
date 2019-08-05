@@ -11,13 +11,11 @@
 import os
 import sys
 
-#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
-<<<<<<< HEAD
 #Read input data from 2012-2019
 #No Program Data for 2013
-=======
 
 # Program specialties groupings
 specialty_groups_filename = 'program_specialties\program_specialties_groupings.txt'
@@ -28,13 +26,11 @@ specialties = list(specialty_groups_db.keys())
 specialty_groups = list(set(specialty_groups_db.values()))
 
 #Read input data from 2012-2019 (No Program Data for 2013)
->>>>>>> acf3572f0467ddc6247f9b6f2b62a0cbcf82ddb4
 geog_programs_data_db = {}
 for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
     input_filename = r'program_specialties\program_specialties_%s.txt' % year
     input_as_text = open(input_filename).readlines()
     # Need to create exception for 2012 due to formatting
-<<<<<<< HEAD
     if year == 2012:
         file_name_2012 = r'program_specialties/program_specialties_2012.txt'
         input_as_text_2012 = open(file_name_2012).readlines()
@@ -156,7 +152,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     geog_programs_data_db[university_name][year]['Specialty groups']['subject_totals'] = {}
                     geog_programs_data_db[university_name][year]['Specialty groups'][
                         'subject_totals'] = subject_totals_db_2016
-=======
+
     if year == 2012: header_start, header_end = 1, 3
     elif year == 2016: header_start, header_end = 1, 2
     else: header_start, header_end = 0, 1
@@ -210,15 +206,26 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     max_spacialties_in_group = max_spacialties_in_group - 2
                 geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Total'] = len(specialties_in_group)
                 geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Ratio'] = len(specialties_in_group)/max_spacialties_in_group
->>>>>>> acf3572f0467ddc6247f9b6f2b62a0cbcf82ddb4
 
 # print an example
-specialty_group = 'Human-Environmental Interactions'
-university_name = 'university of delaware'
-for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
-    print(year)
-    print(geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group])
-    print('\n')
+# specialty_group = 'Human-Environmental Interactions'
+# university_name = 'university of delaware'
+# # for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
+# #     print(year)
+# #     print(geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group])
+# #     print('\n')
+
+
+data_for_radar_chart = [() for specialty in range(len(geog_programs_data_db))]
+data_for_radar_chart [0]=['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
+         'Urban and Economic Geography', 'Methods']
+
+for university_name,university_specialty_data in geog_programs_data_db.items():
+    for year in university_specialty_data:
+        print(university_specialty_data[year]['University name'],university_specialty_data[year]['Specialty Groups'])
+
+
+
 
 ###use to check for repeated universities
 ### for university, years in geog_programs_data_db.items():
