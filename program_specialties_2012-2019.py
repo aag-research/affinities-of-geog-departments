@@ -15,6 +15,7 @@ folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
 #folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Read input data from 2012-2019
 #No Program Data for 2013
 
@@ -31,10 +32,18 @@ specialty_groups = list(set(specialty_groups_db.values()))
 
 # Read input data:
 #No Program Data for 2013
+=======
+
+# Read input data:
+#No Program Data for 2013
+>>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
 #Excluding 2016 temporarily because it is in different format than the rest
 unwanted_specialties = ['Program Specialties', 'Associates', 'Bachelors','Masters','PhD', 'Certificate Program','Distance / Online','North America', 'Middle America', 'South America', 'Europe', 'Africa', 'Asia', 'Australia Oceania',
                              'Polar World', 'Middle East', 'Former Soviet Union', 'World Regional\n', '\t', '\n','']
 specialty_groups_db={}
+<<<<<<< HEAD
+>>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
+=======
 >>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
 geog_programs_data_db = {}
 #subject_totals_db = {}
@@ -123,8 +132,11 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                 if year == 2016:
                     headers_2016 = headers
 <<<<<<< HEAD
+<<<<<<< HEAD
                     #print(len(headers_2016))
                     #Adding subjects to 2016 dictionaries
+=======
+>>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
 =======
 >>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
                     geog_programs_data_db[university_name][year]['Specialty groups'] = {
@@ -137,6 +149,7 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     'Urban and Economic Geography': [headers_2016[specialty_2016] for specialty_2016 in
                                                      [33, 28, 27, 23, 32, 10, 9]],
                     'Methods': [headers_2016[specialty_2016] for specialty_2016 in [2, 13, 20, 14, 4, 26]]}
+<<<<<<< HEAD
 <<<<<<< HEAD
                     #Calculates program specialties for universities in 2016
                     subject_totals_db_2016 = {}
@@ -234,6 +247,8 @@ for university_name,university_specialty_data in geog_programs_data_db.items():
 
 
 =======
+=======
+>>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
                     geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {}
                     geog_programs_data_db[university_name][year]['Specialty groups']['count'] = {'Human Geography': 0,
                                                                                                  'Human-Environmental Interactions': 0,
@@ -268,6 +283,9 @@ for university_name,university_specialty_data in geog_programs_data_db.items():
 #     if len(years) < 4:
 #         #print(university, len(years))
 #         print(len(years),university, years)
+<<<<<<< HEAD
+>>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
+=======
 >>>>>>> parent of 4cf33fc... Calculates subject specialties and addes to dictionary
 
 ###use to check for repeated universities
