@@ -177,6 +177,19 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                     geog_programs_data_db[university_name][year]['Specialty groups'][
                     'subject_totals'] = subject_totals_db
 
+data_for_radar_chart = [() for specialty in range(len(geog_programs_data_db))]
+data_for_radar_chart [0]=['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
+         'Urban and Economic Geography', 'Methods']
+
+for university_name, university_specialty_data in geog_programs_data_db.items():
+    for year, university_specialty in university_specialty_data.items():
+        for specialty_group_name in university_specialty['Specialty groups']:
+            print(specialty_group_name)
+        # for specialty_group_name, specialty_data in university_specialty.items():
+        #     print(specialty_group_name)
+
+
+
 #use to check for repeated universities
 # for university, years in geog_programs_data_db.items():
 #     if len(years) < 3:
