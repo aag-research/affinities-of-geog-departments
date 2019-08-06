@@ -11,8 +11,8 @@
 import os
 import sys
 
-folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 # Program specialties groupings
@@ -93,22 +93,15 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
 
 #Writing data in format usable for radar chart
 
-data_for_radar_chart = [[] for specialty in range(len(geog_programs_data_db))]
-data_for_radar_chart [0]=['Human Geography', 'Human Environmental Interactions', 'Physical Geography', 'Geospatial Technologies',
-         'Urban and Economic Geography', 'Methods']
-years = [2012 ,2014, 2015, 2016, 2017, 2018, 2019]
+data_for_radar_chart = [specialty_groups]
 for university_name, university_specialty_data in geog_programs_data_db.items():
-    #I wasn't sure if I should declare a list within a list that has the length of the years yet
-    #data_for_radar_chart[1:] = ([university, [[] for i in range(len(years))]] for university, specialty_data in geog_programs_data_db.items())
-    data_for_radar_chart[1:] = ([university, []] for university, specialty_data in geog_programs_data_db.items())
-    specialty_ratio = [[] for specific_year in range(len(years))]
-    for year_index in range(len(specialty_ratio)):
-        if years[year_index] in university_specialty_data:
-            for group_specialty in university_specialty_data[years[year_index]]['Specialty Groups']:
-                ratio_totals = university_specialty_data[years[year_index]]['Specialty Groups'][group_specialty]['Ratio']
-                specialty_ratio[year_index].append(ratio_totals)
-                for university, data_value in data_for_radar_chart[1:]:
-                    data_value.append(specialty_ratio[year_index])
-                #Keeps saving the same year values, I tried a few other methods but can't figure out why
-        else:
-            year_index = year_index+1
+    ratios_for_all_years = []
+    for year in [2012 ,2014, 2015, 2016, 2017, 2018, 2019]:
+        if year in university_specialty_data:
+            ratios_for_1_year = []
+            for specialty_group in specialty_groups:
+                ratios_for_1_year += [university_specialty_data[year]['Specialty Groups'][specialty_group]['Ratio']]
+        else: ratios_for_1_year = [0* len(specialty_groups)]
+        ratios_for_all_years += [ratios_for_1_year]
+    data_for_radar_chart += [(university_name, ratios_for_all_years)]
+print(data_for_radar_chart[:5])  
