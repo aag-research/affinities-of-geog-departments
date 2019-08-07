@@ -11,8 +11,8 @@
 import os
 import sys
 
-#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 # Program specialties groupings
@@ -91,8 +91,8 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
 #     if len(years) < 3:
 #         print(len(years), university, years.keys())
 
-#Writing data in format usable for radar chart
 
+#Writing data in format usable for radar chart
 data_for_radar_chart = [specialty_groups]
 for university_name, university_specialty_data in geog_programs_data_db.items():
     ratios_for_all_years = []
@@ -101,7 +101,17 @@ for university_name, university_specialty_data in geog_programs_data_db.items():
             ratios_for_1_year = []
             for specialty_group in specialty_groups:
                 ratios_for_1_year += [university_specialty_data[year]['Specialty Groups'][specialty_group]['Ratio']]
-        else: ratios_for_1_year = [0* len(specialty_groups)]
+        else: ratios_for_1_year = [0, 0, 0, 0, 0, 0]
         ratios_for_all_years += [ratios_for_1_year]
     data_for_radar_chart += [(university_name, ratios_for_all_years)]
-print(data_for_radar_chart[:5])  
+#print(data_for_radar_chart[:5])
+
+data_for_radar_chart_textfile = open('final_radar_chart_data.txt', 'w')
+str_data_radar_text = (str(data_for_radar_chart))
+data_for_radar_chart_textfile.write(str_data_radar_text)
+
+
+# for list_index in range(len(data_for_radar_chart)):
+#     str_data_radar = str(data_for_radar_chart)
+#     data_for_radar_chart_textfile.write('\n'.join(str_data_radar))
+data_for_radar_chart_textfile.close()
