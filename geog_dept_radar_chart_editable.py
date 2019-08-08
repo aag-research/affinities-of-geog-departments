@@ -33,7 +33,8 @@ from matplotlib.spines import Spine
 from matplotlib.transforms import Affine2D
 from matplotlib.transforms import Bbox
 
-folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+#folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
+folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 def radar_factory(num_vars, frame='circle'):
@@ -125,45 +126,49 @@ if __name__ == '__main__':
     theta = radar_factory(N, frame='polygon')
 
     data = data_list
-    spoke_labels = data.pop(0)
+    spoke_labels = data[0]
 
     spoke_labels[5] = 'Urban and Economic\n Geography'
     spoke_labels[1] = 'Human-Environmental\n Interactions'
-    spoke_labels[2]= 'Physical\n Geography'
-    spoke_labels[4]='Human\n Geography'
-    data=data_list[93:]
+    spoke_labels[2] = 'Physical\n Geography'
+    spoke_labels[4] = 'Human\n Geography'
+    data = data_list[94]
 
-    fig, axes = plt.subplots(figsize=(14,12), nrows=2, ncols=2,
-                             subplot_kw=dict(projection='radar'))
-    fig.subplots_adjust(wspace=0.75, hspace=0.45, top=0.85, bottom=0.05)
+    #fig, axes = plt.subplots(figsize=(14,12), nrows=2, ncols=2,
+    #                         subplot_kw=dict(projection='radar'))
+    #fig.subplots_adjust(wspace=0.75, hspace=0.45, top=0.85, bottom=0.05)
+    ax = plt.subplot(111, projection='radar')
     #'#fc9403' is color orange
     colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403']
 
     #Plotting the data
-    for ax, (title, case_data) in zip(axes.flat, data):
-        ax.set_rgrids([0.2, 0.4, 0.6, 0.8])
-        ax.set_title(title.title(), weight='bold', size='medium', position=(0.5, 1.16),
-                     horizontalalignment='center', verticalalignment='center')
-        for d, color in zip(case_data, colors):
-            ax.plot(theta, d, color=color)
-            ax.fill(theta, d, facecolor=color, alpha=0.45)
-        #I want to increase the spacing but I get an error when I uncomment line 151
-        #ax.set_thetagrids(spoke_labels, frac=0.06)
-        ax.set_varlabels(spoke_labels)
+    #for ax, (title, case_data) in zip(axes.flat, data):
+    ax.set_rgrids([0.2, 0.4, 0.6, 0.8])
+    ax.set_title(data[0].title(), weight='bold', size='medium', position=(0.5, 1.16),
+                 horizontalalignment='center', verticalalignment='center')
+    for d, color in zip(data[1], colors):
+        ax.plot(theta, d, color=color)
+        ax.fill(theta, d, facecolor=color, alpha=0.45)
+    #I want to increase the spacing but I get an error when I uncomment line 151
+    #ax.set_thetagrids(spoke_labels, frac=0.06)
+    ax.set_varlabels(spoke_labels)
 
     # add legend relative to top-left plot
     #ax = axes[0, 0]
-    ax = axes[0,0]
+    #ax = axes[0,0]
     labels = ('2012', '2014', '2015', '2016', '2017', '2018', '2019')
-    legend = ax.legend(labels, loc=(2, 0),
+    legend = ax.legend(labels, loc=(1.15, 0),
                        labelspacing=0.1, fontsize='small')
     #Main title
-    fig.text(0.5, 0.965, 'U.S. University\'s Geography Department Affinities',
-             horizontalalignment='center', color='black', weight='bold',
-             size=22)
+    #fig.text(0.5, 0.965, 'U.S. University\'s Geography Department Affinities',
+    #         horizontalalignment='center', color='black', weight='bold',
+    #         size=22)
+    ax.set_title('U.S. University\'s Geography Department Affinities',
+         horizontalalignment='center', verticalalignment='top')
+    plt.tight_layout()
     #saves current figure
     plt.savefig('test_radar_chart.png')
-    extent = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    fig.savefig('ax2_figure.png', bbox_inches=extent)
+    #extent = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+    #fig.savefig('ax2_figure.png', bbox_inches=extent)
     plt.show()
 
