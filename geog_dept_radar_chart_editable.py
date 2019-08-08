@@ -126,11 +126,12 @@ if __name__ == '__main__':
 
     data = data_list
     spoke_labels = data.pop(0)
-
-    spoke_labels[5] = 'Urban and Economic\n Geography'
-    spoke_labels[1] = 'Human-Environmental\n Interactions'
-    spoke_labels[2]= 'Physical\n Geography'
-    spoke_labels[4]='Human\n Geography'
+    spoke_labels[0] = 'HG'
+    spoke_labels[1] = 'HE'
+    spoke_labels[2]= 'PG'
+    spoke_labels[3]='GT'
+    spoke_labels[4]='UE'
+    spoke_labels[5]='M'
     data=data_list[93:]
 
     fig, axes = plt.subplots(figsize=(14,12), nrows=2, ncols=2,
@@ -163,7 +164,5 @@ if __name__ == '__main__':
              size=22)
     #saves current figure
     plt.savefig('test_radar_chart.png')
-    extent = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    fig.savefig('ax2_figure.png', bbox_inches=extent)
     plt.show()
 
