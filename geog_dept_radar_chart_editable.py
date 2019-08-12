@@ -115,7 +115,6 @@ def radar_factory(num_vars, frame='circle'):
 
     register_projection(RadarAxes)
     return theta
-
 #University program specialties data
 data_for_reading = open('final_radar_chart_data.txt').readline()
 data_list = ast.literal_eval(data_for_reading)
@@ -124,63 +123,37 @@ data_list = ast.literal_eval(data_for_reading)
 if __name__ == '__main__':
     N = 6
     theta = radar_factory(N, frame='polygon')
+    for data_index in range(1,5):
+        data = data_list[data_index]
+        spoke_labels = data_list[0]
+        spoke_labels[1] = 'Human\nGeography'
+        spoke_labels[2] = 'Physical\nGeography'
+        spoke_labels[4] = 'Geospatial\nTechnologies'
+        spoke_labels[5] = 'Urban & Economic\nGeography'
 
-    data = data_list
-    spoke_labels = data.pop(0)
-    spoke_labels[0] = 'HG'
-    spoke_labels[1] = 'HE'
-    spoke_labels[2]= 'PG'
-    spoke_labels[3]='GT'
-    spoke_labels[4]='UE'
-    spoke_labels[5]='M'
-    data=data_list[93:]
+        ax = plt.subplot(111, projection='radar')
+        #increasing the padding in ticks
+        ax.tick_params(axis='x', which='major', direction = 'out',labelsize = 'small', pad = 11)
 
-    fig, axes = plt.subplots(figsize=(14,12), nrows=2, ncols=2,
-                             subplot_kw=dict(projection='radar'))
-    fig.subplots_adjust(wspace=0.75, hspace=0.45, top=0.85, bottom=0.05)
-    spoke_labels = data[0]
-
-    spoke_labels[5] = 'Urban and Economic\n Geography'
-    spoke_labels[1] = 'Human-Environmental\n Interactions'
-    spoke_labels[2] = 'Physical\n Geography'
-    spoke_labels[4] = 'Human\n Geography'
-    data = data_list[94]
-
-    #fig, axes = plt.subplots(figsize=(14,12), nrows=2, ncols=2,
-    #                         subplot_kw=dict(projection='radar'))
-    #fig.subplots_adjust(wspace=0.75, hspace=0.45, top=0.85, bottom=0.05)
-    ax = plt.subplot(111, projection='radar')
-    #'#fc9403' is color orange
-    colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403']
+        #'#fc9403' is color orange
+        #colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403']
+        #for same colors that are blue
+        colors = ['#B8F2FF','#82E9FF','#47C9FF','#266EF6','#0839C2','#052274', '#02113A']
 
     #Plotting the data
-    #for ax, (title, case_data) in zip(axes.flat, data):
-    ax.set_rgrids([0.2, 0.4, 0.6, 0.8])
-    ax.set_title(data[0].title(), weight='bold', size='medium', position=(0.5, 1.16),
+        ax.set_rgrids([0.2, 0.4, 0.6, 0.8])
+        ax.set_title(data[0].title(), weight='bold', size='medium', position=(0.5, 1.1),
                  horizontalalignment='center', verticalalignment='center')
-    for d, color in zip(data[1], colors):
-        ax.plot(theta, d, color=color)
-        ax.fill(theta, d, facecolor=color, alpha=0.45)
-    #I want to increase the spacing but I get an error when I uncomment line 151
-    #ax.set_thetagrids(spoke_labels, frac=0.06)
-    ax.set_varlabels(spoke_labels)
+        for d, color in zip(data[1], colors):
+            ax.plot(theta, d, color=color)
+            ax.fill(theta, d, facecolor=color, alpha=0.22)
+        ax.set_varlabels(spoke_labels)
 
-    # add legend relative to top-left plot
-    #ax = axes[0, 0]
-    #ax = axes[0,0]
-    labels = ('2012', '2014', '2015', '2016', '2017', '2018', '2019')
-    legend = ax.legend(labels, loc=(1.15, 0),
+    #Addes legend
+        labels = ('2012', '2014', '2015', '2016', '2017', '2018', '2019')
+        legend = ax.legend(labels, loc=(1.15, 0),
                        labelspacing=0.1, fontsize='small')
-    #Main title
-    #fig.text(0.5, 0.965, 'U.S. University\'s Geography Department Affinities',
-    #         horizontalalignment='center', color='black', weight='bold',
-    #         size=22)
-    ax.set_title('U.S. University\'s Geography Department Affinities',
-         horizontalalignment='center', verticalalignment='top')
-    plt.tight_layout()
     #saves current figure
-    plt.savefig('test_radar_chart.png')
-    #extent = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    #fig.savefig('ax2_figure.png', bbox_inches=extent)
-    plt.show()
-
+        plt.savefig(r'radar_charts\radar_chart_{0}.png'.format(data[0]))
+        plt.clf()
+     #plt.show()
