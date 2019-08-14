@@ -1,7 +1,7 @@
 # Author:                       Eni Awowale
 # Date first written:           June 20, 2019
-# Date last updated:            July 23, 2019
-# Purpose:                      Create a Radar Chart of University Geography Departments Program Specialities
+# Date last updated:            August 13, 2019
+# Summary:                      Create a Radar Chart of University Geography Departments Program Specialities
 
 
 """
@@ -20,16 +20,16 @@ import os
 import sys
 import ast
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+rcParams['font.family'] = 'DejaVu Sans'
 from matplotlib.patches import Circle, RegularPolygon
 from matplotlib.path import Path
 from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
 from matplotlib.spines import Spine
 from matplotlib.transforms import Affine2D
-from matplotlib.transforms import Bbox
 
 folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
-#folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
 os.chdir(folder)
 
 def radar_factory(num_vars, frame='circle'):
@@ -110,50 +110,60 @@ def radar_factory(num_vars, frame='circle'):
 
     register_projection(RadarAxes)
     return theta
-#University program specialties data
+
+#Radar Chart Data
 data_for_reading = open('final_radar_chart_data.txt').readline()
 data_list = ast.literal_eval(data_for_reading)
-
+data=[]
+for data_index in [1, 94, 143, 147]:
+    data.append(data_list[data_index])
 
 if __name__ == '__main__':
     N = 6
     theta = radar_factory(N, frame='polygon')
-    for data_index in [82, 126, 147, 156]:
-        data = data_list[data_index]
-        spoke_labels = data_list[0]
-        spoke_labels[0] = '\n\nMethods'
-        spoke_labels[1] = 'Human\nGeography'
-        spoke_labels[2] = 'Physical\nGeography'
-        spoke_labels[3] = 'Human-Environmental\nInteractions'
-        spoke_labels[4] = 'Geospatial\nTechnologies'
-        spoke_labels[5] = 'Urban and Economic\nGeography'
 
-        ax = plt.subplot(111, projection='radar')
-        #Tick parameters
-        ax.tick_params(axis='x', which='major', grid_alpha=0, direction='out', labelsize='small', pad=12)
+    spoke_labels = data_list.pop(0)
+    spoke_labels[0] = '\n\nMethods'
+    spoke_labels[1] = 'Human\nGeography'
+    spoke_labels[2] = 'Physical\nGeography'
+    spoke_labels[3] = 'Human-Environmental\nInteractions'
+    spoke_labels[4] = 'Geospatial\nTechnologies'
+    spoke_labels[5] = 'Urban and Economic\nGeography'
 
-    #Various color styles and schemes
-        #for same colors that are blue
-        #colors = ['#B8F2FF','#82E9FF','#47C9FF','#266EF6','#0839C2','#052274', '#02113A']
-        #colors = ['#02113A', '#02113A', '#02113A', '#02113A', '#02113A', '#02113A', '#02113A']
-        #markers = ['o', 'v', '*', 'P', 'h', 'd', 's']
-        #linewidths = [1, 1.75, 2.5, 3.25, 4, 4.75, 5.5][::-1]
 
-        linewidths = [1, 1.5, 2, 2.5, 3, 3.5, 4][::-1]
-        colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403'][::-1]
+    fig, axes = plt.subplots(figsize=(11, 8.5), nrows=2, ncols=2,
+                             subplot_kw=dict(projection='radar'))
+    #axes.spines.set_visible(False)
+    fig.subplots_adjust(wspace=0.15, hspace=0.55, top=0.85, bottom=0.08, left=0.10, right=0.90)
+
+#Various color styles and schemes:
+    #linewidths for thick lines:
+    #linewidths = [.5, 1, 1.75, 2.75, 4, 5.5, 7.25][::-1]
+    #standard progressive thickness
+    linewidths = [1, 1.5, 2, 2.5, 3, 3.5, 4][::-1]
+    colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403'][::-1]
     #Plotting the data
+    for ax, (title, case_data) in zip(axes.flat, data):
+        ax.tick_params(axis='x', which='major', grid_alpha=0, direction='out', labelsize='small', pad=12)
         ax.set_rgrids([0.2, 0.4, 0.6, 0.8], size='small')
-        ax.set_title(data[0].title(), weight='bold', size='medium', position=(0.5, 1.1),
-                 horizontalalignment='center', verticalalignment='center')
-        for d, color, widths in zip(data[1], colors, linewidths):
+        ax.set_title(title.title(), weight='bold' ,size='medium', position=(0.5, 1.15),
+                     horizontalalignment='center', verticalalignment='top')
+        for d, color, widths in zip(case_data, colors, linewidths):
             ax.plot(theta, d, color=color, linewidth=widths, linestyle=':')
             ax.fill(theta, d, facecolor='#02113A', alpha=0.25)
         ax.set_varlabels(spoke_labels)
 
-    #Addes legend
+        #set legend relative to top right ax
+        #ax = axes[0,0]
+
+        #when in for loop adds a legend to all of them
         labels = ('2012', '2014', '2015', '2016', '2017', '2018', '2019')
-        legend = ax.legend(labels, loc=(1.12, 0),
+        legend = ax.legend(labels, loc=(1.20, 0),
                        labelspacing=0.1, fontsize='small')
+    #Main title
+    fig.text(0.5, 0.965, 'U.S. University\'s Geography Department Affinities',
+             horizontalalignment='center', color='black', weight='bold',
+             size=20)
     #saves current figure
-        plt.savefig(r'radar_charts\radar_chart_{0}.png'.format(data[0]))
-        plt.clf()
+    fig.savefig('four_universities_radar_chart.png')
+    plt.show()
