@@ -1,7 +1,7 @@
 # Author:                       Eni Awowale
 # Date first written:           June 20, 2019
-# Date last updated:            July 23, 2019
-# Purpose:                      Create a Radar Chart of University Geography Departments Program Specialities
+# Date last updated:            August 14, 2019
+# Summary:                      Create Radar Charts of University Geography Departments Program Specialities
 
 
 """
@@ -10,9 +10,7 @@ Using a Radar chart (spider or star chart) visualize university program specialt
 Each year since 2012 the AAG (American Association of Geographers)
 publishes a Guide to Geography Programs in the Americas, Program Specialties section.
 The data used is from Program Specialties published from 2012-2019, excluding 2013,
-(the Guide was not published in 2013). The four universities selected are:
-Auburn University, University of Maryland, College Park, University of North Carolina, Charlotte, and
-Kent State University.
+(the Guide was not published in 2013).
 """
 
 import numpy as np
@@ -20,13 +18,16 @@ import os
 import sys
 import ast
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 from matplotlib.patches import Circle, RegularPolygon
 from matplotlib.path import Path
 from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
 from matplotlib.spines import Spine
 from matplotlib.transforms import Affine2D
-from matplotlib.transforms import Bbox
+
+#Set font
+rcParams['font.family'] = 'DejaVu Sans'
 
 folder = r'C:\Users\oawowale\Documents\GitHub\affinities-of-geog-departments'
 #folder = r'C:\Users\cdony\Google Drive\GitHub\affinities-of-geog-departments'
@@ -110,6 +111,7 @@ def radar_factory(num_vars, frame='circle'):
 
     register_projection(RadarAxes)
     return theta
+
 #University program specialties data
 data_for_reading = open('final_radar_chart_data.txt').readline()
 data_list = ast.literal_eval(data_for_reading)
@@ -121,6 +123,7 @@ if __name__ == '__main__':
     for data_index in [82, 126, 147, 156]:
         data = data_list[data_index]
         spoke_labels = data_list[0]
+        #Formatting tick names
         spoke_labels[0] = '\n\nMethods'
         spoke_labels[1] = 'Human\nGeography'
         spoke_labels[2] = 'Physical\nGeography'
@@ -132,16 +135,9 @@ if __name__ == '__main__':
         #Tick parameters
         ax.tick_params(axis='x', which='major', grid_alpha=0, direction='out', labelsize='small', pad=12)
 
-    #Various color styles and schemes
-        #for same colors that are blue
-        #colors = ['#B8F2FF','#82E9FF','#47C9FF','#266EF6','#0839C2','#052274', '#02113A']
-        #colors = ['#02113A', '#02113A', '#02113A', '#02113A', '#02113A', '#02113A', '#02113A']
-        #markers = ['o', 'v', '*', 'P', 'h', 'd', 's']
-        #linewidths = [1, 1.75, 2.5, 3.25, 4, 4.75, 5.5][::-1]
-
+        #Colors and line thickness
         linewidths = [1, 1.5, 2, 2.5, 3, 3.5, 4][::-1]
         colors = ['b', 'r', 'g', 'm', 'y', 'c', '#fc9403'][::-1]
-    #Plotting the data
         ax.set_rgrids([0.2, 0.4, 0.6, 0.8], size='small')
         ax.set_title(data[0].title(), weight='bold', size='medium', position=(0.5, 1.1),
                  horizontalalignment='center', verticalalignment='center')
@@ -150,10 +146,11 @@ if __name__ == '__main__':
             ax.fill(theta, d, facecolor='#02113A', alpha=0.25)
         ax.set_varlabels(spoke_labels)
 
-    #Addes legend
+        #Add legend
         labels = ('2012', '2014', '2015', '2016', '2017', '2018', '2019')
         legend = ax.legend(labels, loc=(1.12, 0),
                        labelspacing=0.1, fontsize='small')
-    #saves current figure
+        #Save current figure
         plt.savefig(r'radar_charts\radar_chart_{0}.png'.format(data[0]))
+        #Clear plot for new data
         plt.clf()
