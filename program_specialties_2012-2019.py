@@ -1,6 +1,6 @@
 # Author:                       Eni Awowale & Coline Dony
 # Date first written:           June 27, 2019
-# Date last updated:            July 23, 2019
+# Date last updated:            August 14, 2019
 # Purpose:                      Determine U.S. University's levels of specialization
 
 # Problem Statement:
@@ -84,13 +84,10 @@ for year in [2012, 2014, 2015, 2016, 2017, 2018, 2019]:
                 geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Total'] = len(specialties_in_group)
                 geog_programs_data_db[university_name][year]['Specialty Groups'][specialty_group]['Ratio'] = len(specialties_in_group)/max_spacialties_in_group
 
-
-
-#use to check for repeated universities
+#Use to check for repeated universities
 # for university, years in geog_programs_data_db.items():
 #     if len(years) < 3:
 #         print(len(years), university, years.keys())
-
 
 #Writing data in format usable for radar chart
 data_for_radar_chart = [specialty_groups]
@@ -104,14 +101,10 @@ for university_name, university_specialty_data in geog_programs_data_db.items():
         else: ratios_for_1_year = [0, 0, 0, 0, 0, 0]
         ratios_for_all_years += [ratios_for_1_year]
     data_for_radar_chart += [(university_name, ratios_for_all_years)]
-#print(data_for_radar_chart[:5])
 
+#Data for radar chart
 data_for_radar_chart_textfile = open('final_radar_chart_data.txt', 'w')
 str_data_radar_text = (str(data_for_radar_chart))
 data_for_radar_chart_textfile.write(str_data_radar_text)
-
-
-# for list_index in range(len(data_for_radar_chart)):
-#     str_data_radar = str(data_for_radar_chart)
-#     data_for_radar_chart_textfile.write('\n'.join(str_data_radar))
+radar_chart_data_other_format = ['2012','2014','2015','2016', '2017', '2018', '2019']
 data_for_radar_chart_textfile.close()
