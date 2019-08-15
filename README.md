@@ -1,4 +1,5 @@
 #Affinities of Geography Departments
+
 ##Purpose:
 Uses data from the AAG Guide to  to better understand each geography department's affinity
 ##Code style:
