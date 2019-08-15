@@ -103,7 +103,7 @@ for university_name, university_specialty_data in geog_programs_data_db.items():
     data_for_radar_chart += [(university_name, ratios_for_all_years)]
 
 #Data for radar chart
-data_for_radar_chart_textfile = open('final_radar_chart_data.txt', 'w')
+data_for_radar_chart_textfile = open('radar_chart_data.txt', 'w')
 str_data_radar_text = (str(data_for_radar_chart))
 data_for_radar_chart_textfile.write(str_data_radar_text)
 radar_chart_data_other_format = ['2012','2014','2015','2016', '2017', '2018', '2019']

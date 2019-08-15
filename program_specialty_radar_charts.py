@@ -115,6 +115,9 @@ def radar_factory(num_vars, frame='circle'):
 data_for_reading = open('final_radar_chart_data.txt').readline()
 data_list = ast.literal_eval(data_for_reading)
 
+'''Actual List:
+['Urban and Economic Geography', 'Physical Geography', 'Methods', 'Human-Environmental Interactions', 'Geospatial Technologies', 'Human Geography']
+'''
 
 if __name__ == '__main__':
     N = 6
@@ -123,12 +126,12 @@ if __name__ == '__main__':
         data = data_list[data_index]
         spoke_labels = data_list[0]
         #Formatting tick names
-        spoke_labels[0] = '\n\nMethods'
-        spoke_labels[1] = 'Human\nGeography'
-        spoke_labels[2] = 'Physical\nGeography'
+        spoke_labels[0] = '\n\nUrban and Economic\nGeography'
+        spoke_labels[1] = 'Physical\nGeography'
+        spoke_labels[2] = 'Methods'
         spoke_labels[3] = 'Human-Environmental\nInteractions'
         spoke_labels[4] = 'Geospatial\nTechnologies'
-        spoke_labels[5] = 'Urban and Economic\nGeography'
+        spoke_labels[5] = 'Human\nGeography'
 
         ax = plt.subplot(111, projection='radar')
         #Tick parameters
