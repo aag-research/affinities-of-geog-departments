@@ -120,18 +120,21 @@ data=[]
 for data_index in [1, 94, 143, 147]:
     data.append(data_list[data_index])
 
+'''Actual List:
+['Urban and Economic Geography', 'Physical Geography', 'Methods', 'Human-Environmental Interactions', 'Geospatial Technologies', 'Human Geography']
+'''
 if __name__ == '__main__':
     N = 6
     theta = radar_factory(N, frame='polygon')
 
     spoke_labels = data_list.pop(0)
     #Formatting tick names
-    spoke_labels[0] = '\n\nMethods'
-    spoke_labels[1] = 'Human\nGeography'
-    spoke_labels[2] = 'Physical\nGeography'
+    spoke_labels[0] = '\n\nUrban and Economic\nGeography'
+    spoke_labels[1] = 'Physical\nGeography'
+    spoke_labels[2] = 'Methods'
     spoke_labels[3] = 'Human-Environmental\nInteractions'
     spoke_labels[4] = 'Geospatial\nTechnologies'
-    spoke_labels[5] = 'Urban and Economic\nGeography'
+    spoke_labels[5] = 'Human\nGeography'
 
     #Plot four subplots to figure
     fig, axes = plt.subplots(figsize=(11, 8.5), nrows=2, ncols=2,
@@ -145,7 +148,7 @@ if __name__ == '__main__':
     for ax, (title, case_data) in zip(axes.flat, data):
         ax.tick_params(axis='x', which='major', grid_alpha=0, direction='out', labelsize='small', pad=12)
         ax.set_rgrids([0.2, 0.4, 0.6, 0.8], size='small')
-        ax.set_title(title.title(), weight='bold' ,size='medium', position=(0.5, 1.15),
+        ax.set_title(title.title(), weight='bold' ,size='medium', position=(0.5, 1.21),
                      horizontalalignment='center', verticalalignment='top')
         for d, color, widths in zip(case_data, colors, linewidths):
             ax.plot(theta, d, color=color, linewidth=widths, linestyle=':')
