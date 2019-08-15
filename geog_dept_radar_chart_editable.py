@@ -121,7 +121,7 @@ data_list = ast.literal_eval(data_for_reading)
 if __name__ == '__main__':
     N = 6
     theta = radar_factory(N, frame='polygon')
-    for data_index in [82, 126, 147, 156]:
+    for data_index in [1, 126, 147, 156]:
         data = data_list[data_index]
         spoke_labels = data_list[0]
         #Formatting tick names
