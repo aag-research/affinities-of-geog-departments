@@ -7,7 +7,7 @@ Python
 ## Tests:
 - Download final radar_chart_data.txt
 - Run geog_dept_radar_chart_editable.py
-- Four seperate png files of radar charts should be exported to test_radar_charts
+- Four seperate png files of radar charts should be exported
 ## How to use:
 ### To download all radar charts for 310 universites
 - Download final_radar_chart_data.txt
