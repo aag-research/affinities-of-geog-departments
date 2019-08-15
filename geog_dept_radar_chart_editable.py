@@ -153,6 +153,6 @@ if __name__ == '__main__':
         legend = ax.legend(labels, loc=(1.12, 0),
                        labelspacing=0.1, fontsize='small')
         #Save current figure
-        plt.savefig(r'radar_chart_{0}.png'.format(data[0]))
+        plt.savefig(r'test_radar_charts\radar_chart_{0}.png'.format(data[0]))
         #Clear plot for new data
         plt.clf()
