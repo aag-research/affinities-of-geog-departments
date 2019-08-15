@@ -19,7 +19,7 @@ returns 310 exported png files of radar charts
 ## Credits: 
 ### Matplotlib:
 https://matplotlib.org/gallery/api/radar_chart.html
-###The Python Graph Gallery:
+### The Python Graph Gallery:
 https://python-graph-gallery.com/radar-chart/
-###AAG:
+### AAG:
 http://www.aag.org/guide
